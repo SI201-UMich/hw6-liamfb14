@@ -8,7 +8,7 @@
 # Asked ChatGPT for help debugging and understanding the JSON structure
 #
 # Did your use of GenAI on this assignment align with your goals and guidelines in your Gen AI contract? If not, why?
-#
+#My use of Ai did align with my goal and guidelines of my GEN AI contract. I only used AI as a tool to asist with my learing when i was unable to figure it out myself after a sold attempt.
 # --- ARGUMENTS & EXPECTED RETURN VALUES PROVIDED --- #
 # --- SEE INSTRUCTIONS FOR FULL DETAILS ON METHOD IMPLEMENTATION --- #
 
@@ -480,10 +480,7 @@ class TestHomeworkDogAPI(unittest.TestCase):
         self.assertEqual(get_groups_above_cutoff(2, self.test_cache_file), {"g1": 2})
         self.assertEqual(get_groups_above_cutoff(3, self.test_cache_file), {})
 
-    # -------------------------
-    # extra credit - uncomment tests below to evaluate extra credit function
-    # -------------------------
-    """
+    
     def test_recommend_breeds_in_same_group_empty_cache(self):
         create_cache({}, self.test_cache_file)
         self.assertEqual(
@@ -588,7 +585,7 @@ class TestHomeworkDogAPI(unittest.TestCase):
             recommend_breeds_in_same_group("breed a", self.test_cache_file),
             ["Breed B", "Breed Z"],
         )
-    """
+
 
 
 if __name__ == "__main__":
