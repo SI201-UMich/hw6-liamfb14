@@ -1,10 +1,10 @@
 # SI 201 HW6 (APIs, JSON, and Caching)
-# Your name:
-# Your student id:
-# Your email:
+# Your name: Liam Bredeweg
+# Your student id: 6147 6298
+# Your email: liamfb@umich.edu
 # Who or what you worked with on this homework (including generative AI like ChatGPT):
 # If you worked with generative AI also add a statement for how you used it.
-# e.g.:
+# e.g.: Used Claude AI for some help degugging and on a couple of functiond where I was struggleing 
 # Asked ChatGPT for help debugging and understanding the JSON structure
 #
 # Did your use of GenAI on this assignment align with your goals and guidelines in your Gen AI contract? If not, why?
@@ -37,11 +37,11 @@ def load_json(filename):
         cannot be opened or is not valid JSON.
     """
     try:
-        with open(filename, 'r', encoding='utf-8') as f:
+        with open(filename, "r", encoding="utf-8") as f:
             return json.load(f)
-    except:
+    except (FileNotFoundError, json.JSONDecodeError):
         return {}
-
+    
 
 def create_cache(dictionary, filename):
     """
@@ -55,7 +55,8 @@ def create_cache(dictionary, filename):
     RETURNS:
         None
     """
-    pass
+    with open(filename, "w", encoding="utf-8") as f:
+        json.dump(dictionary, f)
 
 
 def search_breed(breed_id):
@@ -72,7 +73,16 @@ def search_breed(breed_id):
         JSON body as a dict (with a top-level 'data' key on success), OR None if the
         request failed or the response does not represent a successful breed lookup.
     """
-    pass
+    url = f"https://dogapi.dog/api/v2/breeds/{breed_id}"
+    try:
+        response = requests.get(url)
+        if response.status_code == 200:
+            parsed_json = response.json()
+            if parsed_json.get("data") is not None:
+                return (parsed_json, url)
+        return None
+    except Exception:
+        return None
 
 
 def update_cache(breed_ids, cache_file):
